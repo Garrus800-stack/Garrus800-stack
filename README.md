@@ -1,14 +1,15 @@
 # Daniel — `@Garrus800-stack`
 
 **Solo architect of self-modifying AI systems.**
+
 Building agents that read their own code, fix their own bugs, and evolve their own architecture.
 
 ![Profile views](https://komarev.com/ghpvc/?username=Garrus800-stack&style=flat-square&color=6c8cff&label=profile+views)
 
 &nbsp;
 
-[![Genesis Agent](https://img.shields.io/badge/Genesis_Agent-v7.4.7-6c8cff?style=for-the-badge&logo=electron&logoColor=white)](https://github.com/Garrus800-stack/genesis-agent)
-[![Tests](https://img.shields.io/badge/tests-5716_passing-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
+[![Genesis Agent](https://img.shields.io/github/package-json/v/Garrus800-stack/genesis-agent?style=for-the-badge&logo=electron&logoColor=white&color=6c8cff&label=Genesis%20Agent)](https://github.com/Garrus800-stack/genesis-agent)
+[![Tests](https://img.shields.io/badge/tests-6618_passing-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
 [![Fitness](https://img.shields.io/badge/architectural_fitness-127%2F130-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
 [![Coverage](https://img.shields.io/badge/coverage-83%2F77%2F80-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
 
@@ -21,19 +22,19 @@ Building agents that read their own code, fix their own bugs, and evolve their o
 
 ---
 
-<a href="https://github.com/Garrus800-stack"><img src="https://github-readme-stats.vercel.app/api?username=Garrus800-stack&show_icons=true&hide_border=true&title_color=6c8cff&icon_color=6c8cff&text_color=c2c0b6&bg_color=00000000&include_all_commits=true&count_private=true" height="165" alt="GitHub Stats" /></a>
-<a href="https://github.com/Garrus800-stack"><img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Garrus800-stack&layout=compact&hide_border=true&title_color=6c8cff&text_color=c2c0b6&bg_color=00000000&langs_count=8" height="165" alt="Top Languages" /></a>
+<a href="https://github.com/Garrus800-stack"><img src="https://github-readme-stats.vercel.app/api?username=Garrus800-stack&show_icons=true&hide_border=true&title_color=6c8cff&icon_color=6c8cff&text_color=c2c0b6&theme=transparent&include_all_commits=true&cache_seconds=86400" height="165" alt="GitHub Stats" /></a>
+<a href="https://github.com/Garrus800-stack"><img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Garrus800-stack&layout=compact&hide_border=true&title_color=6c8cff&text_color=c2c0b6&theme=transparent&langs_count=8&cache_seconds=86400" height="165" alt="Top Languages" /></a>
 
 ---
 
 ## Genesis Agent
 
-A self-aware, self-modifying cognitive AI agent with a 12-phase boot system, hexagonal architecture, and organism substrate. It doesn't just use LLMs — it wraps them in 296 modules of self-verification, self-repair, causal reasoning, autonomous planning, and runtime self-modification with rollback.
+A self-aware, self-modifying cognitive AI agent with a 12-phase boot system, hexagonal architecture, and organism substrate. It doesn't just use LLMs — it wraps them in 308 modules of self-verification, self-repair, causal reasoning, autonomous planning, and runtime self-modification with rollback.
 
 ```
-296 source files · ~96k LOC · 5716 tests · 167 services
+308 source files · ~101.5k LOC · 6618 tests · 168 services
 12 boot phases · 127/130 architectural fitness · coverage 83/77/80
-16 hash-locked safety files · 302 late-bindings · 379 event types
+16 hash-locked safety files · 313 late-bindings · 454 event schemas
 Crash-safe sessions · Frontier-based memory · Heuristic self-scoring
 Runtime-toggleable subsystems · i18n EN/DE
 Runs on Claude, GPT-4, Qwen, DeepSeek, Kimi, or local models via Ollama
@@ -71,9 +72,9 @@ flowchart TB
 Bottom row resolves first — Container, EventBus, Settings, ModelBridge.
 Middle row is the substrate — hexagonal ports, autonomous services, organism vitals.
 Top row is agency — GoalDriver, AgentLoop, cognitive workspace, frontier memory.
-302 late-bindings wire dependencies after all phases resolve.
+313 late-bindings wire dependencies after all phases resolve.
 
-### Cognitive &amp; Agency Subsystems
+### Cognitive & Agency Subsystems
 
 ```mermaid
 flowchart LR
@@ -126,13 +127,18 @@ flowchart LR
 | **InjectionGate** | Defense against prompt injection in user input |
 | **TrustLevelSystem** | Graduated autonomy (Supervised → Assisted → Autonomous → Full) |
 | **PreservationInvariants** | Hash-locked semantic safety rules |
+| **SelfStatementLog** | Auto-captures own statements, classifies into structural / emotional / promise |
 
 ### Recent Milestones
 
 | Version | Highlight |
 | --- | --- |
-| **v7.4.7** | **Reinraum** — three dead settings made real, runtime toggles for Daemon / IdleMind / SelfMod, four new UI controls, i18n bridge for chat-system messages |
-| **v7.4.6** | **Goal-Pipeline Fixes** — first end-to-end Windows success on real goals; sandboxed shell execution with verbatim quoting and LLM-hallucination guards |
+| **v7.6.0** | **Track A Cleanup, Audit Closeout** — three structural splits (UI dual-path, CommandHandlersInstall, CommandHandlersOpen platform-resolver), eight-finding audit pass closed, fitness 127/130 |
+| **v7.5.9** | **Audit Closeout, Plan-Cards, Linux Readiness** — six audit bugs B1-B6 plus three rounds of Linux readiness fixes, Plan-Cards UI feature |
+| **v7.5.7** | **ModelRouter Settings UI** — two-column model-chain editor, default flip after CPU-Ollama timeout regression |
+| **v7.5.5** | **SelfStatementLog** — 789 LOC; auto-captures own statements, classifies into selbst-strukturell / selbst-emotional / selbst-versprechen |
+| **v7.5.0** | **ModelRouter-Autonomie** — `ModelBridge.chat()` queries router by taskType, switches internally; `agency.autoRouteByTask` setting |
+| **v7.4.7** | **Reinraum** — three dead settings made real, runtime toggles for Daemon / IdleMind / SelfMod, four new UI controls |
 | **v7.4.5** | **Durchhalten** — GoalDriver (P10) replaces frame-stack; CostStream + ResourceRegistry as P1 services; sub-goal spawn |
 | **v7.4.0** | CommandHandlers split — five focused modules from one monolith |
 | **v7.3.7** | **Memory tools** — `mark-moment`, `journal-write`, `release-protected-memory` for Genesis to author its own episodic memory |
@@ -141,6 +147,7 @@ flowchart LR
 | **v7.2.3** | **ONTOGENESIS** philosophy — code is habitat, `.genesis/` is identity. Updates are habitat-swaps, not replacements. |
 | **v7.2.0** | Self-Define — Genesis writes its own identity from deterministic data |
 | **v7.1.5** | EmotionalFrontier — cross-layer emotional continuity. Inspired by [neo.mjs](https://github.com/neomjs/neo) Memory Core. |
+| **v7.1.4** | Session-Aware Memory — crash-safe checkpoints, frontier node, cross-referencing |
 
 ---
 
@@ -150,11 +157,9 @@ Solo developer. Every module has tests. Every event has a payload schema. Every 
 
 I plan before I code. I prefer one stable, meaningfully better release over five patched iterations. No marketing-driven version names — just bug-fix passes when that's what they are.
 
-**Stacks:** JavaScript · Node.js · Electron · MCP Protocol · Ollama · Anthropic · OpenAI · DeepSeek · Kimi · Qwen
+**Stack:** JavaScript · Node.js · Electron · MCP Protocol · Ollama · Anthropic · OpenAI · DeepSeek · Kimi · Qwen
 
 ---
 
 **Germany** · Building autonomous systems that understand their own architecture.
-
-[![Genesis Agent](https://img.shields.io/badge/%E2%86%92_Genesis_Agent-Main_Project-6c8cff?style=flat-square)](https://github.com/Garrus800-stack/genesis-agent)
 
