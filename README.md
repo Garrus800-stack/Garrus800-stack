@@ -1,5 +1,20 @@
 # Daniel — `@Garrus800-stack`
 
+> 🚧 **In development — v7.7.9 — InnerSpeech & Proactive Self-Expression.** Genesis getting his own first-person thought channel and the ability to write into the chat unprompted, when something is worth saying.
+>
+> Internal build phases:
+>
+> - **Phase 1 — Substrate** ✅ — `InnerSpeech.js` first-person thought channel with bounded ring buffer, multi-subscriber async delivery, persistent overflow to `selfStatementLog`. IdleMind as first adopter. Manifest-wired, 26 new tests, no behavioural change yet visible
+> - **Phase 2 — Proactive layer** 🚧 — `ProactiveSelfExpression` module, plan-failure trigger via G5 from v7.7.8, chat-side dot-marked rendering of self-initiated messages, `/quiet` and `/proactive-status` slash commands, settings
+> - **Phase 3 — Full trigger set** — idle-thought, goal-closure-thought, self-formulated-plan, question (via new `QuestionFormulator`)
+> - **Phase 4 — Observation & tuning** — 72h burn-in, threshold tuning if needed
+>
+> Each phase is built and verified internally on both Win and Linux before the next begins. The whole thing ships as one release on GitHub when all phases are stable.
+>
+> Design constraints (structurally enforced via CI): no engagement metrics, no farewell hooks, no fake emotion, no adaptive learning from user reactions, no push outside the chat. Genesis writes from internal state, not to please. Self-Gate stays observation-only — he's never gated against thinking, only the publishing decision is gated.
+>
+> Plan-First mandatory: structured plan first, iterate to viability, build. No half-baked releases.
+
 **Solo architect of self-modifying AI systems.**
 
 Building agents that read their own code, fix their own bugs, and evolve their own architecture.
@@ -9,151 +24,132 @@ Building agents that read their own code, fix their own bugs, and evolve their o
 &nbsp;
 
 [![Genesis Agent](https://img.shields.io/github/package-json/v/Garrus800-stack/genesis-agent?style=for-the-badge&logo=electron&logoColor=white&color=6c8cff&label=Genesis%20Agent)](https://github.com/Garrus800-stack/genesis-agent)
-[![Tests](https://img.shields.io/badge/tests-6618_passing-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
-[![Fitness](https://img.shields.io/badge/architectural_fitness-127%2F130-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
-[![Coverage](https://img.shields.io/badge/coverage-83%2F77%2F80-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
-
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=000)](https://github.com/Garrus800-stack/genesis-agent)
-[![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white)](https://github.com/Garrus800-stack/genesis-agent)
-[![Electron](https://img.shields.io/badge/Electron-47848F?style=flat-square&logo=electron&logoColor=white)](https://github.com/Garrus800-stack/genesis-agent)
-[![MCP](https://img.shields.io/badge/MCP-Protocol-8A2BE2?style=flat-square)](https://github.com/Garrus800-stack/genesis-agent)
-[![Anthropic](https://img.shields.io/badge/Anthropic-D97757?style=flat-square)](https://github.com/Garrus800-stack/genesis-agent)
-[![Ollama](https://img.shields.io/badge/Ollama-000?style=flat-square)](https://github.com/Garrus800-stack/genesis-agent)
+[![Tests](https://img.shields.io/badge/tests-6943_passing-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
+[![Fitness](https://img.shields.io/badge/architectural_fitness-130%2F130-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
+[![Coverage](https://img.shields.io/badge/coverage-80%2F76%2F78-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
 
 ---
 
-<a href="https://github.com/Garrus800-stack"><img src="https://github-readme-stats.vercel.app/api?username=Garrus800-stack&show_icons=true&hide_border=true&title_color=6c8cff&icon_color=6c8cff&text_color=c2c0b6&theme=transparent&include_all_commits=true&cache_seconds=86400" height="165" alt="GitHub Stats" /></a>
-<a href="https://github.com/Garrus800-stack"><img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Garrus800-stack&layout=compact&hide_border=true&title_color=6c8cff&text_color=c2c0b6&theme=transparent&langs_count=8&cache_seconds=86400" height="165" alt="Top Languages" /></a>
+<a href="https://github.com/Garrus800-stack"><img src="https://github-readme-stats.vercel.app/api?username=Garrus800-stack&show_icons=true&hide_border=true&title_color=6c8cff&icon_color=6c8cff&text_color=c2c0b6&theme=transparent&include_all_commits=true&count_private=true&cache_seconds=1800" height="165" alt="GitHub Stats" /></a>
+<a href="https://github.com/Garrus800-stack"><img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Garrus800-stack&layout=compact&hide_border=true&title_color=6c8cff&text_color=c2c0b6&theme=transparent&langs_count=8&cache_seconds=1800" height="165" alt="Top Languages" /></a>
+
+[![Stars](https://img.shields.io/github/stars/Garrus800-stack/genesis-agent?style=flat-square&color=6c8cff&label=Genesis%20Agent%20stars)](https://github.com/Garrus800-stack/genesis-agent/stargazers)
+[![Followers](https://img.shields.io/github/followers/Garrus800-stack?style=flat-square&color=6c8cff&label=followers)](https://github.com/Garrus800-stack)
+[![Last commit](https://img.shields.io/github/last-commit/Garrus800-stack/genesis-agent?style=flat-square&color=6c8cff&label=last%20commit)](https://github.com/Garrus800-stack/genesis-agent/commits)
 
 ---
 
 ## Genesis Agent
 
-A self-aware, self-modifying cognitive AI agent with a 12-phase boot system, hexagonal architecture, and organism substrate. It doesn't just use LLMs — it wraps them in 308 modules of self-verification, self-repair, causal reasoning, autonomous planning, and runtime self-modification with rollback.
+A self-aware, self-modifying cognitive AI agent with a 12-phase boot system, hexagonal architecture, and organism substrate. It doesn't just use LLMs — it wraps them in 339 modules of self-verification, self-repair, causal reasoning, autonomous planning, and runtime self-modification with rollback.
 
 ```
-308 source files · ~101.5k LOC · 6618 tests · 168 services
-12 boot phases · 127/130 architectural fitness · coverage 83/77/80
-16 hash-locked safety files · 313 late-bindings · 454 event schemas
+339 source files · ~107k LOC · 6943 tests · 168 services
+12 boot phases · 130/130 architectural fitness · coverage 80/76/78
+21 hash-locked safety files · 317 late-bindings · 455 event schemas
 Crash-safe sessions · Frontier-based memory · Heuristic self-scoring
 Runtime-toggleable subsystems · i18n EN/DE
 Runs on Claude, GPT-4, Qwen, DeepSeek, Kimi, or local models via Ollama
 ```
 
-### Architecture
+### 12-Phase Boot Architecture
 
 ```mermaid
 flowchart TB
-    classDef foundation fill:#D3D1C7,stroke:#5F5E5A,color:#2C2C2A
-    classDef substrate fill:#9FE1CB,stroke:#0F6E56,color:#04342C
-    classDef cognition fill:#CECBF6,stroke:#534AB7,color:#26215C
-
-    P1["Foundation<br/>Phase 1"]:::foundation
-    P2["Intelligence<br/>Phase 2"]:::foundation
-    P3["Capabilities<br/>Phase 3"]:::foundation
-    P4["Planning<br/>Phase 4"]:::foundation
-
-    P5["Hexagonal<br/>Phase 5"]:::substrate
-    P6["Autonomy<br/>Phase 6"]:::substrate
-    P7["Organism<br/>Phase 7"]:::substrate
-    P8["Revolution<br/>Phase 8"]:::substrate
-
-    P9["Cognitive<br/>Phase 9"]:::cognition
-    P10["Agency<br/>Phase 10"]:::cognition
-    P11["Extended<br/>Phase 11"]:::cognition
-    P12["Hybrid<br/>Phase 12"]:::cognition
-
-    P1 --> P5 --> P9
-    P2 --> P6 --> P10
-    P3 --> P7 --> P11
-    P4 --> P8 --> P12
+    subgraph Top[Phase 9-12 — Agency Layer]
+        P9[Cognitive] --> P10[Agency] --> P11[Revolution] --> P12[Late-Bind]
+    end
+    subgraph Mid[Phase 4-8 — Substrate]
+        P4[Hexagonal] --> P5[Capabilities] --> P6[Autonomy] --> P7[Organism] --> P8[Memory]
+    end
+    subgraph Bot[Phase 1-3 — Foundation]
+        P1[Foundation] --> P2[Intelligence] --> P3[Tools]
+    end
+    Bot --> Mid --> Top
 ```
 
 Bottom row resolves first — Container, EventBus, Settings, ModelBridge.
 Middle row is the substrate — hexagonal ports, autonomous services, organism vitals.
 Top row is agency — GoalDriver, AgentLoop, cognitive workspace, frontier memory.
-313 late-bindings wire dependencies after all phases resolve.
+317 late-bindings wire dependencies after all phases resolve.
 
 ### Cognitive & Agency Subsystems
 
 ```mermaid
 flowchart LR
-    classDef goal fill:#CECBF6,stroke:#534AB7,color:#26215C
-    classDef memory fill:#9FE1CB,stroke:#0F6E56,color:#04342C
-    classDef safety fill:#F5C4B3,stroke:#993C1D,color:#4A1B0C
-    classDef llm fill:#FAC775,stroke:#854F0B,color:#412402
-
-    GD["GoalDriver"]:::goal --> AL["AgentLoop"]:::goal
-    AL --> FP["FormalPlanner"]:::goal
-    AL --> SH["ShellAgent"]:::goal
-    GD --> CS["CostStream"]:::goal
-    GD --> RR["ResourceRegistry"]:::goal
-
-    UM["UnifiedMemory"]:::memory --> EM["EpisodicMemory"]:::memory
-    UM --> KG["KnowledgeGraph"]:::memory
-    UM --> FN["FrontierNode"]:::memory
-    DC["DreamCycle"]:::memory --> UM
-    GB["GenesisBackup"]:::memory
-
-    SP["SelfModificationPipeline"]:::safety
-    IG["InjectionGate"]:::safety
-    TL["TrustLevelSystem"]:::safety
-    PI["PreservationInvariants"]:::safety
-
-    MR["ModelRouter"]:::llm --> MB["ModelBridge"]:::llm
-    MB --> AL
-    MB --> SP
+    AgentLoop --> FormalPlanner
+    AgentLoop --> Verifier
+    AgentLoop --> WorldState
+    AgentLoop --> EpisodicMemory
+    GoalDriver --> AgentLoop
+    GoalDriver --> GoalStack
+    AutonomousDaemon --> GoalDriver
+    AutonomousDaemon --> IdleMind
+    AutonomousDaemon --> DesktopPerception
+    SelfModificationPipeline --> AgentLoop
+    SelfModificationPipeline --> SelfModVerification
+    SelfModificationPipeline --> Reflector
+    Reflector --> SnapshotManager
+    style AgentLoop fill:#6c8cff20
+    style GoalDriver fill:#6c8cff20
+    style AutonomousDaemon fill:#6c8cff20
+    style SelfModificationPipeline fill:#6c8cff20
 ```
 
-| System | Purpose |
+### What Genesis Can Actually Do
+
+| Capability | What it Means |
 | --- | --- |
-| **GoalDriver** | Replaces frame-stack — boot-pickup, auto-resume, sub-goal spawn |
-| **CostStream** | Cost SSOT — token + latency accounting across all model calls |
-| **ResourceRegistry** | Tracks network and external services as runtime resources |
-| **CausalAnnotation** | Deterministic cause-effect tracking without LLM |
-| **InferenceEngine** | Rule-based reasoning — answers without calling the model |
-| **GoalSynthesizer** | Autonomous goal generation from empirical weaknesses |
-| **StructuralAbstraction** | Cross-context pattern learning from concrete experiences |
-| **CognitiveWorkspace** | 9-slot working memory (Global Workspace Theory) |
-| **DreamCycle** | Offline memory consolidation + insight generation |
-| **FrontierNode** | Graph-based focus anchor — "what's important now" |
-| **EmotionalFrontier** | Cross-layer emotional continuity (Phase 8 bridge) |
-| **SessionPersistence** | Crash-safe checkpoints + heuristic session scoring |
-| **GenesisBackup** | 4-trigger snapshot system protecting `.genesis/` identity |
-| **UnifiedMemory** | Cross-store recall with Jaccard similarity boosting |
-| **ColonyOrchestrator** | Multi-agent goal decomposition + merge |
-| **ModelRouter** | Per-task model selection (chat / code / analysis / creative) |
-| **SelfModificationPipeline** | Sandboxed code changes with rollback |
-| **InjectionGate** | Defense against prompt injection in user input |
-| **TrustLevelSystem** | Graduated autonomy (Supervised → Assisted → Autonomous → Full) |
+| **Read own source code** | `read_source` and `mcp-code` tools — Genesis can introspect any module, including itself |
+| **Modify own code at runtime** | `SelfModificationPipeline` with hot-reload, sandbox testing, automatic rollback on regression |
+| **Detect own capability gaps** | `CapabilityHonesty` — refuses tasks it can't actually complete instead of hallucinating success |
+| **Plan multi-step goals** | `FormalPlanner` builds plans with verifiable steps; `GoalStack` for nested sub-goals |
+| **Verify own output** | `Verifier` runs post-execution checks; `SelfModVerification` ensures modifications don't regress |
+| **Recover from crashes** | `BootRecovery` with last-known-good snapshots; `SessionPersistence` for crash-safe context |
+| **Track own causality** | `CausalGraph` with edge confidence, contradiction detection, learned rules |
+| **Reason about own architecture** | `ArchitectureReflection` builds dependency graphs; `CognitiveSelfModel` for empirical self-awareness |
+| **Adapt prompts based on own performance** | `AdaptivePromptStrategy` rolls back regressions, promotes improvements via `PromptEvolution` A/B testing |
+
+### Safety Boundary
+
+| | |
+| --- | --- |
+| **SafeGuard** | Kernel + critical files hash-locked at boot |
+| **CapabilityGuard** | Token-based scope enforcement |
 | **PreservationInvariants** | Hash-locked semantic safety rules |
-| **SelfStatementLog** | Auto-captures own statements, classifies into structural / emotional / promise |
+| **TrustLevelSystem** | Graduated autonomy (Supervised → Assisted → Autonomous → Full) |
+| **InjectionGate** | Defense against prompt injection in user input |
+| **DisclosurePolicy** | Trust-based information sovereignty |
+| **EmotionalState (read-only externally)** | No external override of emotional skalars |
+| **Self-Gate (observation-only)** | Genesis is never gated against thinking — only publishing decisions are gated |
 
 ### Recent Milestones
 
 | Version | Highlight |
 | --- | --- |
-| **v7.6.0** | **Track A Cleanup, Audit Closeout** — three structural splits (UI dual-path, CommandHandlersInstall, CommandHandlersOpen platform-resolver), eight-finding audit pass closed, fitness 127/130 |
+| **v7.7.8** | **Goal-Awareness** — five fixes (G1-G5) so Genesis perceives goal-state cleanly: closing-permission classifier, plan-issues never auto-approved, FormalPlanner canonical step types, conversational origins refused, plan-failure reflexion classified into five categories |
+| **v7.7.0–v7.7.7** | **Audit & Schema Hardening** — schema-store hardening, audit-doc-drift cross-checks, toolchain refresh, monaco ESM contract, dist-bundle stability, six audit findings closed |
+| **v7.6.0–v7.6.9** | **Track A Cleanup** — three structural splits (UI dual-path, CommandHandlersInstall, CommandHandlersOpen platform-resolver), eight-finding audit pass closed, fitness 130/130 |
 | **v7.5.9** | **Audit Closeout, Plan-Cards, Linux Readiness** — six audit bugs B1-B6 plus three rounds of Linux readiness fixes, Plan-Cards UI feature |
 | **v7.5.7** | **ModelRouter Settings UI** — two-column model-chain editor, default flip after CPU-Ollama timeout regression |
 | **v7.5.5** | **SelfStatementLog** — 789 LOC; auto-captures own statements, classifies into selbst-strukturell / selbst-emotional / selbst-versprechen |
 | **v7.5.0** | **ModelRouter-Autonomie** — `ModelBridge.chat()` queries router by taskType, switches internally; `agency.autoRouteByTask` setting |
-| **v7.4.7** | **Reinraum** — three dead settings made real, runtime toggles for Daemon / IdleMind / SelfMod, four new UI controls |
+| **v7.4.7** | **Reinraum** — three dead settings made real, runtime toggles for Daemon / IdleMind / SelfMod, four new UI controls, i18n bridge for chat-system messages |
+| **v7.4.6** | **Goal-Pipeline Fixes** — first end-to-end Windows success on real goals; sandboxed shell execution with verbatim quoting and LLM-hallucination guards |
 | **v7.4.5** | **Durchhalten** — GoalDriver (P10) replaces frame-stack; CostStream + ResourceRegistry as P1 services; sub-goal spawn |
-| **v7.4.0** | CommandHandlers split — five focused modules from one monolith |
+| **v7.4.0–v7.4.4** | **Endurance & Cleanup** — CommandHandlers split (five focused modules from one monolith), bookkeeping passes, real answers over confident guesses, "in the now" — module ages out single-version pins |
 | **v7.3.7** | **Memory tools** — `mark-moment`, `journal-write`, `release-protected-memory` for Genesis to author its own episodic memory |
-| **v7.3.5** | Self-Gate — telemetry layer symmetric to Input-Gate (observation, not enforcement, by design) |
-| **v7.3.0** | **Injection Hardening** — Input-Gate blocking external→Genesis prompt injections |
-| **v7.2.3** | **ONTOGENESIS** philosophy — code is habitat, `.genesis/` is identity. Updates are habitat-swaps, not replacements. |
+| **v7.3.0** | **Hexagonal architecture** — Ports for LLM, ToolUse, Awareness, Effector, CodeSafety |
+| **v7.2.3** | **ONTOGENESIS** philosophy — code is habitat, `.genesis/` is identity. Updates are habitat-swaps, not replacements |
 | **v7.2.0** | Self-Define — Genesis writes its own identity from deterministic data |
-| **v7.1.5** | EmotionalFrontier — cross-layer emotional continuity. Inspired by [neo.mjs](https://github.com/neomjs/neo) Memory Core. |
+| **v7.1.5** | EmotionalFrontier — cross-layer emotional continuity. Inspired by [neo.mjs](https://github.com/neomjs/neo) Memory Core |
 | **v7.1.4** | Session-Aware Memory — crash-safe checkpoints, frontier node, cross-referencing |
 
 ---
 
-### How I Work
+## Solo Developer
 
-Solo developer. Every module has tests. Every event has a payload schema. Every release runs through architectural fitness scoring. Source-presence tests verify that declared fixes actually shipped, not just that the bug stopped reproducing. The codebase maintains itself.
+Solo developer. Every module has tests. Every event has a payload schema. Every safety claim is verified by a test that fails if the claim breaks. Architectural fitness is a CI gate. The codebase grows because it deserves to, not because the calendar says so.
 
 I plan before I code. I prefer one stable, meaningfully better release over five patched iterations. No marketing-driven version names — just bug-fix passes when that's what they are.
 
@@ -163,3 +159,4 @@ I plan before I code. I prefer one stable, meaningfully better release over five
 
 **Germany** · Building autonomous systems that understand their own architecture.
 
+[![Genesis Agent](https://img.shields.io/badge/%E2%86%92_Genesis_Agent-Main_Project-6c8cff?style=flat-square)](https://github.com/Garrus800-stack/genesis-agent)
