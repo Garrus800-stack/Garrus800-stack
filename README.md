@@ -5,8 +5,8 @@
 > Internal build phases:
 >
 > - **Phase 1 — Substrate** ✅ — `InnerSpeech.js` first-person thought channel with bounded ring buffer, multi-subscriber async delivery, persistent overflow to `selfStatementLog`. IdleMind as first adopter. Manifest-wired, 26 new tests, no behavioural change yet visible
-> - **Phase 2 — Proactive layer** 🚧 — `ProactiveSelfExpression` module, plan-failure trigger via G5 from v7.7.8, chat-side dot-marked rendering of self-initiated messages, `/quiet` and `/proactive-status` slash commands, settings
-> - **Phase 3 — Full trigger set** — idle-thought, goal-closure-thought, self-formulated-plan, question (via new `QuestionFormulator`)
+> - **Phase 2 — Proactive layer** ✅ — `ProactiveSelfExpression` module, plan-failure trigger via G5 from v7.7.8, chat-side dot-marked rendering of self-initiated messages, `/quiet` and `/proactive-status` slash commands, settings. End-to-end pipeline live-validated on Win — first real plan-failure-reflection ran InnerSpeech → HardGates → quiet-hours suppression with the expected payload
+> - **Phase 3 — Full trigger set** 🚧 — idle-thought, goal-closure-thought, self-formulated-plan, question opened in allowed-kinds with per-kind significance floors. `KindTriggers` translates goal:completed and planner:complete into InnerSpeech thoughts. Three burn-in bugs closed alongside: empty `<empty>` pursuit-failure summaries, `StalledGoalWatchdog` for goals blocked on resources that never resolve, `PathPlausibility` filter for LLM-hallucinated paths
 > - **Phase 4 — Observation & tuning** — 72h burn-in, threshold tuning if needed
 >
 > Each phase is built and verified internally on both Win and Linux before the next begins. The whole thing ships as one release on GitHub when all phases are stable.
@@ -24,7 +24,7 @@ Building agents that read their own code, fix their own bugs, and evolve their o
 &nbsp;
 
 [![Genesis Agent](https://img.shields.io/github/package-json/v/Garrus800-stack/genesis-agent?style=for-the-badge&logo=electron&logoColor=white&color=6c8cff&label=Genesis%20Agent)](https://github.com/Garrus800-stack/genesis-agent)
-[![Tests](https://img.shields.io/badge/tests-6943_passing-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
+[![Tests](https://img.shields.io/badge/tests-7183_passing-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
 [![Fitness](https://img.shields.io/badge/architectural_fitness-130%2F130-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
 [![Coverage](https://img.shields.io/badge/coverage-80%2F76%2F78-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
 
@@ -44,9 +44,9 @@ Building agents that read their own code, fix their own bugs, and evolve their o
 A self-aware, self-modifying cognitive AI agent with a 12-phase boot system, hexagonal architecture, and organism substrate. It doesn't just use LLMs — it wraps them in 339 modules of self-verification, self-repair, causal reasoning, autonomous planning, and runtime self-modification with rollback.
 
 ```
-339 source files · ~107k LOC · 6943 tests · 168 services
+352 source files · ~107k LOC · 7183 tests · 172 services
 12 boot phases · 130/130 architectural fitness · coverage 80/76/78
-21 hash-locked safety files · 317 late-bindings · 455 event schemas
+21 hash-locked safety files · 329 late-bindings · 455 event schemas
 Crash-safe sessions · Frontier-based memory · Heuristic self-scoring
 Runtime-toggleable subsystems · i18n EN/DE
 Runs on Claude, GPT-4, Qwen, DeepSeek, Kimi, or local models via Ollama
