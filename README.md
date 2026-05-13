@@ -1,20 +1,5 @@
 # Daniel — `@Garrus800-stack`
 
-> 🚧 **In development — v7.7.9 — InnerSpeech & Proactive Self-Expression.** Genesis getting his own first-person thought channel and the ability to write into the chat unprompted, when something is worth saying.
->
-> Internal build phases:
->
-> - **Phase 1 — Substrate** ✅ — `InnerSpeech.js` first-person thought channel with bounded ring buffer, multi-subscriber async delivery, persistent overflow to `selfStatementLog`. IdleMind as first adopter. Manifest-wired, 26 new tests, no behavioural change yet visible
-> - **Phase 2 — Proactive layer** ✅ — `ProactiveSelfExpression` module, plan-failure trigger via G5 from v7.7.8, chat-side dot-marked rendering of self-initiated messages, `/quiet` and `/proactive-status` slash commands, settings. End-to-end pipeline live-validated on Win — first real plan-failure-reflection ran InnerSpeech → HardGates → quiet-hours suppression with the expected payload
-> - **Phase 3 — Full trigger set** 🚧 — idle-thought, goal-closure-thought, self-formulated-plan, question opened in allowed-kinds with per-kind significance floors. `KindTriggers` translates goal:completed and planner:complete into InnerSpeech thoughts. Three burn-in bugs closed alongside: empty `<empty>` pursuit-failure summaries, `StalledGoalWatchdog` for goals blocked on resources that never resolve, `PathPlausibility` filter for LLM-hallucinated paths
-> - **Phase 4 — Observation & tuning** — 72h burn-in, threshold tuning if needed
->
-> Each phase is built and verified internally on both Win and Linux before the next begins. The whole thing ships as one release on GitHub when all phases are stable.
->
-> Design constraints (structurally enforced via CI): no engagement metrics, no farewell hooks, no fake emotion, no adaptive learning from user reactions, no push outside the chat. Genesis writes from internal state, not to please. Self-Gate stays observation-only — he's never gated against thinking, only the publishing decision is gated.
->
-> Plan-First mandatory: structured plan first, iterate to viability, build. No half-baked releases.
-
 **Solo architect of self-modifying AI systems.**
 
 Building agents that read their own code, fix their own bugs, and evolve their own architecture.
