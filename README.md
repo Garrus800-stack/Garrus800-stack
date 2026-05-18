@@ -9,18 +9,9 @@ Building agents that read their own code, fix their own bugs, and evolve their o
 &nbsp;
 
 [![Genesis Agent](https://img.shields.io/github/package-json/v/Garrus800-stack/genesis-agent?style=for-the-badge&logo=electron&logoColor=white&color=6c8cff&label=Genesis%20Agent)](https://github.com/Garrus800-stack/genesis-agent)
-[![Tests](https://img.shields.io/badge/tests-7183_passing-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
+[![Tests](https://img.shields.io/badge/tests-7794_passing-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
 [![Fitness](https://img.shields.io/badge/architectural_fitness-130%2F130-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
 [![Coverage](https://img.shields.io/badge/coverage-80%2F76%2F78-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
-
----
-
-<a href="https://github.com/Garrus800-stack"><img src="https://github-readme-stats.vercel.app/api?username=Garrus800-stack&show_icons=true&hide_border=true&title_color=6c8cff&icon_color=6c8cff&text_color=c2c0b6&theme=transparent&include_all_commits=true&count_private=true&cache_seconds=1800" height="165" alt="GitHub Stats" /></a>
-<a href="https://github.com/Garrus800-stack"><img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Garrus800-stack&layout=compact&hide_border=true&title_color=6c8cff&text_color=c2c0b6&theme=transparent&langs_count=8&cache_seconds=1800" height="165" alt="Top Languages" /></a>
-
-[![Stars](https://img.shields.io/github/stars/Garrus800-stack/genesis-agent?style=flat-square&color=6c8cff&label=Genesis%20Agent%20stars)](https://github.com/Garrus800-stack/genesis-agent/stargazers)
-[![Followers](https://img.shields.io/github/followers/Garrus800-stack?style=flat-square&color=6c8cff&label=followers)](https://github.com/Garrus800-stack)
-[![Last commit](https://img.shields.io/github/last-commit/Garrus800-stack/genesis-agent?style=flat-square&color=6c8cff&label=last%20commit)](https://github.com/Garrus800-stack/genesis-agent/commits)
 
 ---
 
@@ -29,9 +20,9 @@ Building agents that read their own code, fix their own bugs, and evolve their o
 A self-aware, self-modifying cognitive AI agent with a 12-phase boot system, hexagonal architecture, and organism substrate. It doesn't just use LLMs — it wraps them in 339 modules of self-verification, self-repair, causal reasoning, autonomous planning, and runtime self-modification with rollback.
 
 ```
-352 source files · ~107k LOC · 7183 tests · 172 services
+372 source files · ~116k LOC · 7794 tests · 177 services
 12 boot phases · 130/130 architectural fitness · coverage 80/76/78
-21 hash-locked safety files · 329 late-bindings · 455 event schemas
+21 hash-locked safety files · 348 late-bindings · 476 event schemas
 Crash-safe sessions · Frontier-based memory · Heuristic self-scoring
 Runtime-toggleable subsystems · i18n EN/DE
 Runs on Claude, GPT-4, Qwen, DeepSeek, Kimi, or local models via Ollama
@@ -56,7 +47,7 @@ flowchart TB
 Bottom row resolves first — Container, EventBus, Settings, ModelBridge.
 Middle row is the substrate — hexagonal ports, autonomous services, organism vitals.
 Top row is agency — GoalDriver, AgentLoop, cognitive workspace, frontier memory.
-317 late-bindings wire dependencies after all phases resolve.
+348 late-bindings wire dependencies after all phases resolve.
 
 ### Cognitive & Agency Subsystems
 
@@ -94,6 +85,7 @@ flowchart LR
 | **Track own causality** | `CausalGraph` with edge confidence, contradiction detection, learned rules |
 | **Reason about own architecture** | `ArchitectureReflection` builds dependency graphs; `CognitiveSelfModel` for empirical self-awareness |
 | **Adapt prompts based on own performance** | `AdaptivePromptStrategy` rolls back regressions, promotes improvements via `PromptEvolution` A/B testing |
+| **Crystallize own skills** | `SkillCrystallizer` (Phase 2 Können) distills reusable skills from agent-loop trajectories; `SkillEffectivenessTracker` with Wilson scoring |
 
 ### Safety Boundary
 
@@ -105,13 +97,18 @@ flowchart LR
 | **TrustLevelSystem** | Graduated autonomy (Supervised → Assisted → Autonomous → Full) |
 | **InjectionGate** | Defense against prompt injection in user input |
 | **DisclosurePolicy** | Trust-based information sovereignty |
-| **EmotionalState (read-only externally)** | No external override of emotional skalars |
+| **EmotionalState (read-only externally)** | No external override of emotional scalars |
 | **Self-Gate (observation-only)** | Genesis is never gated against thinking — only publishing decisions are gated |
 
 ### Recent Milestones
 
 | Version | Highlight |
 | --- | --- |
+| **v7.9.1** | **Live-Fix Pass** — `continue` auto-approved at AUTONOMOUS, ApprovalGate 5 min, `loop_early` filter, 24h goal-reject cooldown, IdleMind per-type activity counts, CHANGELOG englished, doc-counts reconciled |
+| **v7.9.0** | **Skill Forge + Phase 2 Können** — `SkillCrystallizer` distills reusable skills from agent-loop trajectories; `SkillEffectivenessTracker` with Wilson scoring; iteration loop in `SkillManager.createSkill`; format-tolerant `executeSkill`; `/run-skill` with JSON arg; `SkillRecallSection` in PromptBuilder |
+| **v7.8.9** | **Phase 1 Können — Affect-Encoding** — affect-trail snapshots at agent-loop boundaries with gate-pass status and per-loop pass-rate |
+| **v7.8.4** | **Bug-Sweep + Pre-Deletion Audit** — empty errorMessage fallback, StalledGoalWatchdog hardening, PathPlausibility, four-layer cleanup-protocol pattern |
+| **v7.7.9** | **Proactive Self-Expression Phase 3** — full PSE pipeline with all five `allowedKinds` active, first confirmed end-to-end PSE run |
 | **v7.7.8** | **Goal-Awareness** — five fixes (G1-G5) so Genesis perceives goal-state cleanly: closing-permission classifier, plan-issues never auto-approved, FormalPlanner canonical step types, conversational origins refused, plan-failure reflexion classified into five categories |
 | **v7.7.0–v7.7.7** | **Audit & Schema Hardening** — schema-store hardening, audit-doc-drift cross-checks, toolchain refresh, monaco ESM contract, dist-bundle stability, six audit findings closed |
 | **v7.6.0–v7.6.9** | **Track A Cleanup** — three structural splits (UI dual-path, CommandHandlersInstall, CommandHandlersOpen platform-resolver), eight-finding audit pass closed, fitness 130/130 |
