@@ -9,20 +9,20 @@ Building agents that read their own code, fix their own bugs, and evolve their o
 &nbsp;
 
 [![Genesis Agent](https://img.shields.io/github/package-json/v/Garrus800-stack/genesis-agent?style=for-the-badge&logo=electron&logoColor=white&color=6c8cff&label=Genesis%20Agent)](https://github.com/Garrus800-stack/genesis-agent)
-[![Tests](https://img.shields.io/badge/tests-7794_passing-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
-[![Fitness](https://img.shields.io/badge/architectural_fitness-130%2F130-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
+[![Tests](https://img.shields.io/badge/tests-7937_passing-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
+[![Fitness](https://img.shields.io/badge/architectural_fitness-127%2F130-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
 [![Coverage](https://img.shields.io/badge/coverage-80%2F76%2F78-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
 
 ---
 
 ## Genesis Agent
 
-A self-aware, self-modifying cognitive AI agent with a 12-phase boot system, hexagonal architecture, and organism substrate. It doesn't just use LLMs — it wraps them in 339 modules of self-verification, self-repair, causal reasoning, autonomous planning, and runtime self-modification with rollback.
+A self-aware, self-modifying cognitive AI agent with a 12-phase boot system, hexagonal architecture, and organism substrate. It doesn't just use LLMs — it wraps them in 376 modules of self-verification, self-repair, causal reasoning, autonomous planning, and runtime self-modification with rollback.
 
 ```
-372 source files · ~116k LOC · 7794 tests · 177 services
-12 boot phases · 130/130 architectural fitness · coverage 80/76/78
-21 hash-locked safety files · 348 late-bindings · 476 event schemas
+376 source files · ~119k LOC · 7937 tests · 178 services
+12 boot phases · 127/130 architectural fitness · coverage 80/76/78
+41 hash-locked safety files · 359 late-bindings · 18 CI audit gates
 Crash-safe sessions · Frontier-based memory · Heuristic self-scoring
 Runtime-toggleable subsystems · i18n EN/DE
 Runs on Claude, GPT-4, Qwen, DeepSeek, Kimi, or local models via Ollama
@@ -47,7 +47,7 @@ flowchart TB
 Bottom row resolves first — Container, EventBus, Settings, ModelBridge.
 Middle row is the substrate — hexagonal ports, autonomous services, organism vitals.
 Top row is agency — GoalDriver, AgentLoop, cognitive workspace, frontier memory.
-348 late-bindings wire dependencies after all phases resolve.
+359 late-bindings wire dependencies after all phases resolve.
 
 ### Cognitive & Agency Subsystems
 
@@ -79,19 +79,19 @@ flowchart LR
 | **Read own source code** | `read_source` and `mcp-code` tools — Genesis can introspect any module, including itself |
 | **Modify own code at runtime** | `SelfModificationPipeline` with hot-reload, sandbox testing, automatic rollback on regression |
 | **Detect own capability gaps** | `CapabilityHonesty` — refuses tasks it can't actually complete instead of hallucinating success |
-| **Plan multi-step goals** | `FormalPlanner` builds plans with verifiable steps; `GoalStack` for nested sub-goals |
+| **Plan multi-step goals** | `FormalPlanner` builds plans with verifiable steps; `GoalStack` for nested sub-goals; goal-relevant module paths injected into every plan-LLM prompt to prevent path hallucination |
 | **Verify own output** | `Verifier` runs post-execution checks; `SelfModVerification` ensures modifications don't regress |
 | **Recover from crashes** | `BootRecovery` with last-known-good snapshots; `SessionPersistence` for crash-safe context |
 | **Track own causality** | `CausalGraph` with edge confidence, contradiction detection, learned rules |
 | **Reason about own architecture** | `ArchitectureReflection` builds dependency graphs; `CognitiveSelfModel` for empirical self-awareness |
 | **Adapt prompts based on own performance** | `AdaptivePromptStrategy` rolls back regressions, promotes improvements via `PromptEvolution` A/B testing |
-| **Crystallize own skills** | `SkillCrystallizer` (Phase 2 Können) distills reusable skills from agent-loop trajectories; `SkillEffectivenessTracker` with Wilson scoring |
+| **Crystallize own skills** | `SkillCrystallizer` (Phase 2 Können) distills reusable skills from agent-loop trajectories; `SkillEffectivenessTracker` with Wilson scoring; `SkillPromotionEvaluator` gates which candidates graduate |
 
 ### Safety Boundary
 
 | | |
 | --- | --- |
-| **SafeGuard** | Kernel + critical files hash-locked at boot |
+| **SafeGuard** | Kernel + critical files hash-locked at boot (41 files protected) |
 | **CapabilityGuard** | Token-based scope enforcement |
 | **PreservationInvariants** | Hash-locked semantic safety rules |
 | **TrustLevelSystem** | Graduated autonomy (Supervised → Assisted → Autonomous → Full) |
@@ -99,11 +99,15 @@ flowchart LR
 | **DisclosurePolicy** | Trust-based information sovereignty |
 | **EmotionalState (read-only externally)** | No external override of emotional scalars |
 | **Self-Gate (observation-only)** | Genesis is never gated against thinking — only publishing decisions are gated |
+| **18 CI audit gates** | Hash-locked dev-time scripts that catch wiring drift, language discipline, doc-drift, service-number drift, listener leaks, raw timers, self-gate coverage, future-version references — all strict-mode |
 
 ### Recent Milestones
 
 | Version | Highlight |
 | --- | --- |
+| **v7.9.6** | **Hygiene Pass + Pursuit-Loop Fixes + Path-Context Root** — toolRegistry→tools wiring fix, four missing `skill:*` channels into CHANNELS contract, two new audit gates (`audit-doc-language` + `audit-service-numbers`, 16→18), `lockCritical` 21→41 (CI scripts now hash-locked), three pursuit-loop fixes (final-return error field + replan-step normalization + hallucination regex extension), new shared `plan-context.js` helper feeds `pickRelevantModules` and "use these EXACT paths" directive into all three planners (`AgentLoopPlanner`, `FormalPlanner`, `ColonyOrchestrator`) closing the path-hallucination root, ARCHITECTURE +2 chapters (Hauptstandort/Außenposten identity topology + Self-Modification Pipeline as subsystem), English-only sweep in runtime logs |
+| **v7.9.5** | **Inhabit Activity + Architecture Graph Zoom + Doc Sweep** — 17th IdleMind activity (deterministic self-state snapshot via InnerSpeech, PSE HardGate-blocked); mouse-wheel zoom / click-drag pan / double-click reset on the architecture graph; live-fix pass (undo gated against gitAutoCommit+.git, shutdown summary 8s timeout, continuation maxAttempts setting, archreflect 15min + per-phase timing, daemon suggestions/health-issues persisted + slash, runtime-missing log, peer multicast honesty, lessonsAutoCapture diagnostic) |
+| **v7.9.4** | **SkillPromotionEvaluator + SkillRehearsal** — promotion gate decides which Phase-2-Können candidates graduate from rehearsal into active skills; rehearsal loop exercises candidates against historical contexts before promotion |
 | **v7.9.1** | **Live-Fix Pass** — `continue` auto-approved at AUTONOMOUS, ApprovalGate 5 min, `loop_early` filter, 24h goal-reject cooldown, IdleMind per-type activity counts, CHANGELOG englished, doc-counts reconciled |
 | **v7.9.0** | **Skill Forge + Phase 2 Können** — `SkillCrystallizer` distills reusable skills from agent-loop trajectories; `SkillEffectivenessTracker` with Wilson scoring; iteration loop in `SkillManager.createSkill`; format-tolerant `executeSkill`; `/run-skill` with JSON arg; `SkillRecallSection` in PromptBuilder |
 | **v7.8.9** | **Phase 1 Können — Affect-Encoding** — affect-trail snapshots at agent-loop boundaries with gate-pass status and per-loop pass-rate |
