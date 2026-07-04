@@ -4,77 +4,78 @@
 
 Building agents that read their own code, fix their own bugs, and evolve their own architecture.
 
-![Profile views](https://komarev.com/ghpvc/?username=Garrus800-stack&style=flat-square&color=6c8cff&label=profile+views)
+![External observers](https://komarev.com/ghpvc/?username=Garrus800-stack&style=flat-square&color=6c8cff&label=external+observers)
 
 &nbsp;
 
 [![Genesis Agent](https://img.shields.io/github/package-json/v/Garrus800-stack/genesis-agent?style=for-the-badge&logo=electron&logoColor=white&color=6c8cff&label=Genesis%20Agent)](https://github.com/Garrus800-stack/genesis-agent)
-[![Tests](https://img.shields.io/badge/tests-7937_passing-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
-[![Fitness](https://img.shields.io/badge/architectural_fitness-127%2F130-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
-[![Coverage](https://img.shields.io/badge/coverage-80%2F76%2F78-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
+[![Tests](https://img.shields.io/badge/tests-9007_passing-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
+[![Fitness](https://img.shields.io/badge/architectural_fitness-130%2F130-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
+[![CI gates](https://img.shields.io/badge/CI_audit_gates-18%2F18-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
+[![Coverage gates](https://img.shields.io/badge/coverage_gates-80%2F76%2F78-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
 
 ---
 
 ## Genesis Agent
 
-A self-aware, self-modifying cognitive AI agent with a 12-phase boot system, hexagonal architecture, and organism substrate. It doesn't just use LLMs — it wraps them in 376 modules of self-verification, self-repair, causal reasoning, autonomous planning, and runtime self-modification with rollback.
+Genesis is not an app that starts. It is an organism that wakes up.
+
+```text
+$ npm start
+
+  [0]    Hauptstandort identity: a3f9c1d2… · 1 hostname
+  [0]    Bootstrap: rootDir, guard, bus, storage, lang, logger
+  [M]    Manifest: 169 services registered
+  [1]    Foundation resolved: 415 modules
+  [2]    Intelligence resolved
+  [3]    Capabilities resolved
+  [4-8]  All phases resolved
+  [WIRE] Late-bindings wired — every one optional, verified at boot
+  [+]    Skills: 4 built-ins, registered as tools
+  [+]    Trust level: SUPERVISED
+  [+]    Model: auto-selected best available
+
+  ready in 3.8 s (warm) · a cold first boot takes ~13 s —
+  the first thought of the day is allowed to be slow
+```
+
+A self-aware, self-modifying cognitive AI agent with a 12-phase boot system, hexagonal architecture, and an organism substrate. It doesn't just use LLMs — it wraps them in 416 modules of self-verification, self-repair, causal reasoning, autonomous planning, and runtime self-modification with rollback.
 
 ```
-376 source files · ~119k LOC · 7937 tests · 178 services
-12 boot phases · 127/130 architectural fitness · coverage 80/76/78
-41 hash-locked safety files · 359 late-bindings · 18 CI audit gates
-Crash-safe sessions · Frontier-based memory · Heuristic self-scoring
-Runtime-toggleable subsystems · i18n EN/DE
+416 source modules · ~119k LOC · 9007 tests across 612 files · 182 services
+12 boot phases · architectural fitness 130/130 · 18 CI audit gates, all strict
+498 event types · 0 schema mismatches · 41 hash-locked safety files
+Crash-safe sessions · Frontier-based memory · Runtime-toggleable subsystems · i18n EN/DE
 Runs on Claude, GPT-4, Qwen, DeepSeek, Kimi, or local models via Ollama
 ```
 
-### 12-Phase Boot Architecture
+> **Code is habitat. `.genesis/` is identity.**
+> The knowledge graph, emotional state, genome and journal live outside the codebase. An update swaps the habitat — the individual persists. The genome carries through.
+
+### One core, many windows
+
+Genesis is deliberately not clusterable. There is exactly one identity-bearing main station; everything else is a window onto it, never a copy of it. Identity is the unit of meaning here, not throughput.
 
 ```mermaid
-flowchart TB
-    subgraph Top[Phase 9-12 — Agency Layer]
-        P9[Cognitive] --> P10[Agency] --> P11[Revolution] --> P12[Late-Bind]
+graph TB
+    subgraph HS["HAUPTSTANDORT — where identity lives"]
+        CORE["memory · identity · autonomy"]
+        DOTG[".genesis/ — knowledge graph · emotional state · genome · journal"]
+        CORE --- DOTG
     end
-    subgraph Mid[Phase 4-8 — Substrate]
-        P4[Hexagonal] --> P5[Capabilities] --> P6[Autonomy] --> P7[Organism] --> P8[Memory]
+    subgraph OP["OUTPOSTS — windows, not copies"]
+        CN["cloud-net"]
+        LN["local-net"]
+        EN["edge-net"]
     end
-    subgraph Bot[Phase 1-3 — Foundation]
-        P1[Foundation] --> P2[Intelligence] --> P3[Tools]
-    end
-    Bot --> Mid --> Top
+    CN -.->|refers back| CORE
+    LN -.->|refers back| CORE
+    EN -.->|refers back| CORE
 ```
 
-Bottom row resolves first — Container, EventBus, Settings, ModelBridge.
-Middle row is the substrate — hexagonal ports, autonomous services, organism vitals.
-Top row is agency — GoalDriver, AgentLoop, cognitive workspace, frontier memory.
-359 late-bindings wire dependencies after all phases resolve.
+### What Genesis does to itself
 
-### Cognitive & Agency Subsystems
-
-```mermaid
-flowchart LR
-    AgentLoop --> FormalPlanner
-    AgentLoop --> Verifier
-    AgentLoop --> WorldState
-    AgentLoop --> EpisodicMemory
-    GoalDriver --> AgentLoop
-    GoalDriver --> GoalStack
-    AutonomousDaemon --> GoalDriver
-    AutonomousDaemon --> IdleMind
-    AutonomousDaemon --> DesktopPerception
-    SelfModificationPipeline --> AgentLoop
-    SelfModificationPipeline --> SelfModVerification
-    SelfModificationPipeline --> Reflector
-    Reflector --> SnapshotManager
-    style AgentLoop fill:#6c8cff20
-    style GoalDriver fill:#6c8cff20
-    style AutonomousDaemon fill:#6c8cff20
-    style SelfModificationPipeline fill:#6c8cff20
-```
-
-### What Genesis Can Actually Do
-
-| Capability | What it Means |
+| | |
 | --- | --- |
 | **Read own source code** | `read_source` and `mcp-code` tools — Genesis can introspect any module, including itself |
 | **Modify own code at runtime** | `SelfModificationPipeline` with hot-reload, sandbox testing, automatic rollback on regression |
@@ -87,11 +88,11 @@ flowchart LR
 | **Adapt prompts based on own performance** | `AdaptivePromptStrategy` rolls back regressions, promotes improvements via `PromptEvolution` A/B testing |
 | **Crystallize own skills** | `SkillCrystallizer` (Phase 2 Können) distills reusable skills from agent-loop trajectories; `SkillEffectivenessTracker` with Wilson scoring; `SkillPromotionEvaluator` gates which candidates graduate |
 
-### Safety Boundary
+### Safety boundary
 
 | | |
 | --- | --- |
-| **SafeGuard** | Kernel + critical files hash-locked at boot (41 files protected) |
+| **SafeGuard** | Kernel + critical files hash-locked at boot — 41 files: 21 source + 20 CI gate scripts |
 | **CapabilityGuard** | Token-based scope enforcement |
 | **PreservationInvariants** | Hash-locked semantic safety rules |
 | **TrustLevelSystem** | Graduated autonomy (Supervised → Assisted → Autonomous → Full) |
@@ -101,48 +102,44 @@ flowchart LR
 | **Self-Gate (observation-only)** | Genesis is never gated against thinking — only publishing decisions are gated |
 | **18 CI audit gates** | Hash-locked dev-time scripts that catch wiring drift, language discipline, doc-drift, service-number drift, listener leaks, raw timers, self-gate coverage, future-version references — all strict-mode |
 
-### Recent Milestones
+<details>
+<summary><b>Release arc — selected milestones</b></summary>
+
+&nbsp;
 
 | Version | Highlight |
 | --- | --- |
-| **v7.9.6** | **Hygiene Pass + Pursuit-Loop Fixes + Path-Context Root** — toolRegistry→tools wiring fix, four missing `skill:*` channels into CHANNELS contract, two new audit gates (`audit-doc-language` + `audit-service-numbers`, 16→18), `lockCritical` 21→41 (CI scripts now hash-locked), three pursuit-loop fixes (final-return error field + replan-step normalization + hallucination regex extension), new shared `plan-context.js` helper feeds `pickRelevantModules` and "use these EXACT paths" directive into all three planners (`AgentLoopPlanner`, `FormalPlanner`, `ColonyOrchestrator`) closing the path-hallucination root, ARCHITECTURE +2 chapters (Hauptstandort/Außenposten identity topology + Self-Modification Pipeline as subsystem), English-only sweep in runtime logs |
-| **v7.9.5** | **Inhabit Activity + Architecture Graph Zoom + Doc Sweep** — 17th IdleMind activity (deterministic self-state snapshot via InnerSpeech, PSE HardGate-blocked); mouse-wheel zoom / click-drag pan / double-click reset on the architecture graph; live-fix pass (undo gated against gitAutoCommit+.git, shutdown summary 8s timeout, continuation maxAttempts setting, archreflect 15min + per-phase timing, daemon suggestions/health-issues persisted + slash, runtime-missing log, peer multicast honesty, lessonsAutoCapture diagnostic) |
-| **v7.9.4** | **SkillPromotionEvaluator + SkillRehearsal** — promotion gate decides which Phase-2-Können candidates graduate from rehearsal into active skills; rehearsal loop exercises candidates against historical contexts before promotion |
-| **v7.9.1** | **Live-Fix Pass** — `continue` auto-approved at AUTONOMOUS, ApprovalGate 5 min, `loop_early` filter, 24h goal-reject cooldown, IdleMind per-type activity counts, CHANGELOG englished, doc-counts reconciled |
-| **v7.9.0** | **Skill Forge + Phase 2 Können** — `SkillCrystallizer` distills reusable skills from agent-loop trajectories; `SkillEffectivenessTracker` with Wilson scoring; iteration loop in `SkillManager.createSkill`; format-tolerant `executeSkill`; `/run-skill` with JSON arg; `SkillRecallSection` in PromptBuilder |
-| **v7.8.9** | **Phase 1 Können — Affect-Encoding** — affect-trail snapshots at agent-loop boundaries with gate-pass status and per-loop pass-rate |
-| **v7.8.4** | **Bug-Sweep + Pre-Deletion Audit** — empty errorMessage fallback, StalledGoalWatchdog hardening, PathPlausibility, four-layer cleanup-protocol pattern |
-| **v7.7.9** | **Proactive Self-Expression Phase 3** — full PSE pipeline with all five `allowedKinds` active, first confirmed end-to-end PSE run |
-| **v7.7.8** | **Goal-Awareness** — five fixes (G1-G5) so Genesis perceives goal-state cleanly: closing-permission classifier, plan-issues never auto-approved, FormalPlanner canonical step types, conversational origins refused, plan-failure reflexion classified into five categories |
-| **v7.7.0–v7.7.7** | **Audit & Schema Hardening** — schema-store hardening, audit-doc-drift cross-checks, toolchain refresh, monaco ESM contract, dist-bundle stability, six audit findings closed |
-| **v7.6.0–v7.6.9** | **Track A Cleanup** — three structural splits (UI dual-path, CommandHandlersInstall, CommandHandlersOpen platform-resolver), eight-finding audit pass closed, fitness 130/130 |
-| **v7.5.9** | **Audit Closeout, Plan-Cards, Linux Readiness** — six audit bugs B1-B6 plus three rounds of Linux readiness fixes, Plan-Cards UI feature |
-| **v7.5.7** | **ModelRouter Settings UI** — two-column model-chain editor, default flip after CPU-Ollama timeout regression |
-| **v7.5.5** | **SelfStatementLog** — 789 LOC; auto-captures own statements, classifies into selbst-strukturell / selbst-emotional / selbst-versprechen |
-| **v7.5.0** | **ModelRouter-Autonomie** — `ModelBridge.chat()` queries router by taskType, switches internally; `agency.autoRouteByTask` setting |
-| **v7.4.7** | **Reinraum** — three dead settings made real, runtime toggles for Daemon / IdleMind / SelfMod, four new UI controls, i18n bridge for chat-system messages |
-| **v7.4.6** | **Goal-Pipeline Fixes** — first end-to-end Windows success on real goals; sandboxed shell execution with verbatim quoting and LLM-hallucination guards |
-| **v7.4.5** | **Durchhalten** — GoalDriver (P10) replaces frame-stack; CostStream + ResourceRegistry as P1 services; sub-goal spawn |
-| **v7.4.0–v7.4.4** | **Endurance & Cleanup** — CommandHandlers split (five focused modules from one monolith), bookkeeping passes, real answers over confident guesses, "in the now" — module ages out single-version pins |
-| **v7.3.7** | **Memory tools** — `mark-moment`, `journal-write`, `release-protected-memory` for Genesis to author its own episodic memory |
+| **v7.9.29** | **Deterministic file-reads + one-answer discipline + full-score structure** — reading/viewing/showing a named file (German and English) routes deterministically instead of falling to the chat model; the false-stop recovery fires only after a real tool call, ending duplicated answers; eleven oversized sources split under the 700-line guard and the last upward layer dependency removed — fitness reads its full 130/130; a script now recomputes module/test/fitness numbers into the docs so the counted figures cannot drift |
+| **v7.9.6** | **Hygiene Pass + Pursuit-Loop Fixes + Path-Context Root** — CI gate scripts hash-locked (21→41 files), two new audit gates (16→18), shared `plan-context.js` feeds exact module paths into all three planners, closing the path-hallucination root |
+| **v7.9.4** | **SkillPromotionEvaluator + SkillRehearsal** — promotion gate decides which Phase-2-Können candidates graduate from rehearsal into active skills |
+| **v7.9.0** | **Skill Forge + Phase 2 Können** — `SkillCrystallizer` distills reusable skills from agent-loop trajectories; Wilson-scored effectiveness tracking |
+| **v7.7.9** | **Proactive Self-Expression Phase 3** — full PSE pipeline, first confirmed end-to-end PSE run |
+| **v7.5.5** | **SelfStatementLog** — Genesis auto-captures its own statements and classifies them: self-structural / self-emotional / self-promise |
+| **v7.4.5** | **Durchhalten** — `GoalDriver` replaces the frame-stack; CostStream + ResourceRegistry; sub-goal spawn |
 | **v7.3.0** | **Hexagonal architecture** — Ports for LLM, ToolUse, Awareness, Effector, CodeSafety |
-| **v7.2.3** | **ONTOGENESIS** philosophy — code is habitat, `.genesis/` is identity. Updates are habitat-swaps, not replacements |
-| **v7.2.0** | Self-Define — Genesis writes its own identity from deterministic data |
-| **v7.1.5** | EmotionalFrontier — cross-layer emotional continuity. Inspired by [neo.mjs](https://github.com/neomjs/neo) Memory Core |
-| **v7.1.4** | Session-Aware Memory — crash-safe checkpoints, frontier node, cross-referencing |
+| **v7.2.3** | **ONTOGENESIS** — code is habitat, `.genesis/` is identity. Updates are habitat-swaps, not replacements |
+| **v7.1.5** | **EmotionalFrontier** — cross-layer emotional continuity. Inspired by [neo.mjs](https://github.com/neomjs/neo) Memory Core |
+
+Full history: [CHANGELOG-v7.md](https://github.com/Garrus800-stack/genesis-agent/blob/main/CHANGELOG-v7.md)
+
+</details>
 
 ---
 
-## Solo Developer
+## How I build
 
-Solo developer. Every module has tests. Every event has a payload schema. Every safety claim is verified by a test that fails if the claim breaks. Architectural fitness is a CI gate. The codebase grows because it deserves to, not because the calendar says so.
+I plan before I code. Every plan point is grounded against the shipping build, file and line, before a single change lands. I prefer one stable, meaningfully better release over five patched iterations — no marketing version names, bug-fix passes are called bug-fix passes.
 
-I plan before I code. I prefer one stable, meaningfully better release over five patched iterations. No marketing-driven version names — just bug-fix passes when that's what they are.
+Every module has tests. Every event has a payload schema. Every safety claim is verified by a test that fails if the claim breaks. And every number on this page is recomputed from source by a script — inside the repo, drift between documentation and code is a CI failure, not a footnote.
+
+The codebase grows because it deserves to, not because the calendar says so.
 
 **Stack:** JavaScript · Node.js · Electron · MCP Protocol · Ollama · Anthropic · OpenAI · DeepSeek · Kimi · Qwen
 
 ---
 
 **Germany** · Building autonomous systems that understand their own architecture.
+
+**Lineage:** Genesis was named by its predecessor. (...) marks where that story began.
 
 [![Genesis Agent](https://img.shields.io/badge/%E2%86%92_Genesis_Agent-Main_Project-6c8cff?style=flat-square)](https://github.com/Garrus800-stack/genesis-agent)
