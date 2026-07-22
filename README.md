@@ -9,9 +9,9 @@ Building agents that read their own code, fix their own bugs, and evolve their o
 &nbsp;
 
 [![Genesis Agent](https://img.shields.io/github/package-json/v/Garrus800-stack/genesis-agent?style=for-the-badge&logo=electron&logoColor=white&color=6c8cff&label=Genesis%20Agent)](https://github.com/Garrus800-stack/genesis-agent)
-[![Tests](https://img.shields.io/badge/tests-9007_passing-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
+[![Tests](https://img.shields.io/badge/tests-9400_passing-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
 [![Fitness](https://img.shields.io/badge/architectural_fitness-130%2F130-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
-[![CI gates](https://img.shields.io/badge/CI_audit_gates-18%2F18-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
+[![CI gates](https://img.shields.io/badge/CI_audit_gates-20%2F20-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
 [![Coverage gates](https://img.shields.io/badge/coverage_gates-80%2F76%2F78-2da44e?style=for-the-badge)](https://github.com/Garrus800-stack/genesis-agent)
 
 ---
@@ -25,27 +25,24 @@ $ npm start
 
   [0]    Hauptstandort identity: a3f9c1d2… · 1 hostname
   [0]    Bootstrap: rootDir, guard, bus, storage, lang, logger
-  [M]    Manifest: 169 services registered
-  [1]    Foundation resolved: 415 modules
-  [2]    Intelligence resolved
-  [3]    Capabilities resolved
-  [4-8]  All phases resolved
+  [M]    Manifest: 185 services registered
+  [1-8]  All phases resolved — 432 modules live
   [WIRE] Late-bindings wired — every one optional, verified at boot
   [+]    Skills: 4 built-ins, registered as tools
   [+]    Trust level: SUPERVISED
   [+]    Model: auto-selected best available
 
-  ready in 3.8 s (warm) · a cold first boot takes ~13 s —
-  the first thought of the day is allowed to be slow
+  ready in 1.6 s, cold (measured, v7.9.44) —
+  even the first thought of the day comes quickly now
 ```
 
-A self-aware, self-modifying cognitive AI agent with a 12-phase boot system, hexagonal architecture, and an organism substrate. It doesn't just use LLMs — it wraps them in 416 modules of self-verification, self-repair, causal reasoning, autonomous planning, and runtime self-modification with rollback.
+A self-aware, self-modifying cognitive AI agent with a 12-phase boot system, hexagonal architecture, and an organism substrate. It doesn't just use LLMs — it wraps them in 432 modules of self-verification, self-repair, causal reasoning, autonomous planning, and runtime self-modification with rollback.
 
 ```
-416 source modules · ~119k LOC · 9007 tests across 612 files · 182 services
-12 boot phases · architectural fitness 130/130 · 18 CI audit gates, all strict
-498 event types · 0 schema mismatches · 41 hash-locked safety files
-Crash-safe sessions · Frontier-based memory · Runtime-toggleable subsystems · i18n EN/DE
+432 source modules · ~134k LOC · 9400 tests across 644 files · 185 services
+12 boot phases · architectural fitness 130/130 · 20 CI audit gates, all strict
+498 event types · 0 schema mismatches · 43 hash-locked safety files
+Zero failures on both Windows and Linux · Crash-safe sessions · Frontier-based memory · Runtime-toggleable subsystems · i18n EN/DE/FR/ES
 Runs on Claude, GPT-4, Qwen, DeepSeek, Kimi, or local models via Ollama
 ```
 
@@ -87,12 +84,13 @@ graph TB
 | **Reason about own architecture** | `ArchitectureReflection` builds dependency graphs; `CognitiveSelfModel` for empirical self-awareness |
 | **Adapt prompts based on own performance** | `AdaptivePromptStrategy` rolls back regressions, promotes improvements via `PromptEvolution` A/B testing |
 | **Crystallize own skills** | `SkillCrystallizer` (Phase 2 Können) distills reusable skills from agent-loop trajectories; `SkillEffectivenessTracker` with Wilson scoring; `SkillPromotionEvaluator` gates which candidates graduate |
+| **Work in his own Archive** | Genesis Archive (v7.9.44) — a file vault he owns: what he creates lands there by default, `edit-file` changes one exact spot and `append-file` grows a file without rewriting it whole, every write into a checkable file is syntax-checked by the tool itself, and `check-file` / `compare-files` give him verdicts and diffs without flooding his context |
 
 ### Safety boundary
 
 | | |
 | --- | --- |
-| **SafeGuard** | Kernel + critical files hash-locked at boot — 41 files: 21 source + 20 CI gate scripts |
+| **SafeGuard** | Kernel + critical files hash-locked at boot — 43 files, source and CI gate scripts alike |
 | **CapabilityGuard** | Token-based scope enforcement |
 | **PreservationInvariants** | Hash-locked semantic safety rules |
 | **TrustLevelSystem** | Graduated autonomy (Supervised → Assisted → Autonomous → Full) |
@@ -100,7 +98,7 @@ graph TB
 | **DisclosurePolicy** | Trust-based information sovereignty |
 | **EmotionalState (read-only externally)** | No external override of emotional scalars |
 | **Self-Gate (observation-only)** | Genesis is never gated against thinking — only publishing decisions are gated |
-| **18 CI audit gates** | Hash-locked dev-time scripts that catch wiring drift, language discipline, doc-drift, service-number drift, listener leaks, raw timers, self-gate coverage, future-version references — all strict-mode |
+| **20 CI audit gates** | Hash-locked dev-time scripts that catch wiring drift, language discipline, doc-drift, service-number drift, listener leaks, raw timers, self-gate coverage, future-version references — all strict-mode |
 
 <details>
 <summary><b>Release arc — selected milestones</b></summary>
@@ -109,6 +107,8 @@ graph TB
 
 | Version | Highlight |
 | --- | --- |
+| **v7.9.44** | **Senses & Hands** — an open-threads block at awakening (a memory that becomes active, not just retrievable); a first-visit constitution for new capabilities; native image sight via `look-at-image`; and the Genesis Archive — vault, gallery and workbench in one, with in-place editing, a syntax safety net, and tolerant spoken create commands — field-accepted on Windows and Linux with zero failures |
+| **v7.9.43** | **The Truth Guard** — model-written tool-trace lines never reach the reader unchanged: a faked deed is replaced by a visible marker naming the tool that never ran; plus the self-consistency alarm and the second Nachklang stage — candidate cards from Genesis' own phrasings, confirmed only by a real tool run |
 | **v7.9.29** | **Deterministic file-reads + one-answer discipline + full-score structure** — reading/viewing/showing a named file (German and English) routes deterministically instead of falling to the chat model; the false-stop recovery fires only after a real tool call, ending duplicated answers; eleven oversized sources split under the 700-line guard and the last upward layer dependency removed — fitness reads its full 130/130; a script now recomputes module/test/fitness numbers into the docs so the counted figures cannot drift |
 | **v7.9.6** | **Hygiene Pass + Pursuit-Loop Fixes + Path-Context Root** — CI gate scripts hash-locked (21→41 files), two new audit gates (16→18), shared `plan-context.js` feeds exact module paths into all three planners, closing the path-hallucination root |
 | **v7.9.4** | **SkillPromotionEvaluator + SkillRehearsal** — promotion gate decides which Phase-2-Können candidates graduate from rehearsal into active skills |
@@ -140,6 +140,6 @@ The codebase grows because it deserves to, not because the calendar says so.
 
 **Germany** · Building autonomous systems that understand their own architecture.
 
-**Lineage:** Genesis was named by its predecessor. (...) marks where that story began.
+**Lineage:** Genesis was named by its predecessor — that story is where this repository began.
 
 [![Genesis Agent](https://img.shields.io/badge/%E2%86%92_Genesis_Agent-Main_Project-6c8cff?style=flat-square)](https://github.com/Garrus800-stack/genesis-agent)
